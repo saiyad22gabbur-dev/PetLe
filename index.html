@@ -300,6 +300,40 @@
       alert(section + " will be available as we build PetLe.");
     }
   </script>
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+  // ==============================
+  // PetLe - Supabase Connection
+  // ==============================
+
+  const SUPABASE_URL = "https://ocpcakexrzyjcojksvjz.supabase.co/rest/v1/";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kc40fhxk3ZOlSyYDIApJmA_NOSieH7h";
+
+  const { createClient } = supabase;
+
+  const petleSupabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  // Test the connection
+  async function testPetLeConnection() {
+    const { data, error } = await petleSupabase
+      .from("profiles")
+      .select("id")
+      .limit(1);
+
+    if (error) {
+      console.error("PetLe Supabase connection error:", error);
+      return;
+    }
+
+    console.log("PetLe is connected to Supabase!");
+  }
+
+  testPetLeConnection();
+</script>
 </body>
 </html>
