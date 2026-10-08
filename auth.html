@@ -3,401 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>PetLe — Account</title>
-
+  <title>PetLe — Log in or create an account</title>
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f7f8f6;
-      color: #182018;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .auth-wrapper {
-      width: 100%;
-      max-width: 440px;
-    }
-
-    .brand {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    .brand-name {
-      font-size: 34px;
-      font-weight: 800;
-      letter-spacing: -1.5px;
-    }
-
-    .brand-tagline {
-      margin-top: 7px;
-      color: #70776f;
-      font-size: 14px;
-    }
-
-    .card {
-      background: white;
-      border: 1px solid #e8ebe6;
-      border-radius: 22px;
-      padding: 32px;
-      box-shadow: 0 18px 50px rgba(24, 32, 24, 0.08);
-    }
-
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: #f3f5f2;
-      padding: 4px;
-      border-radius: 12px;
-      margin-bottom: 28px;
-    }
-
-    .tab {
-      border: 0;
-      background: transparent;
-      padding: 11px;
-      border-radius: 9px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      color: #70776f;
-    }
-
-    .tab.active {
-      background: white;
-      color: #182018;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    h1 {
-      font-size: 25px;
-      letter-spacing: -0.6px;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      color: #70776f;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-
-    .field {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 7px;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px 14px;
-      border: 1px solid #dfe4dd;
-      border-radius: 11px;
-      font-size: 15px;
-      outline: none;
-      transition: 0.2s;
-    }
-
-    input:focus {
-      border-color: #6f806b;
-      box-shadow: 0 0 0 3px rgba(111, 128, 107, 0.12);
-    }
-
-    .primary-btn {
-      width: 100%;
-      border: 0;
-      border-radius: 11px;
-      padding: 14px;
-      background: #263526;
-      color: white;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-
-    .primary-btn:hover {
-      background: #1d2a1d;
-    }
-
-    .message {
-      display: none;
-      margin-top: 18px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .message.success {
-      display: block;
-      background: #edf6ed;
-      color: #315c35;
-    }
-
-    .message.error {
-      display: block;
-      background: #fff0f0;
-      color: #8a3535;
-    }
-
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #70776f;
-      text-decoration: none;
-      font-size: 13px;
-    }
-
-    .back:hover {
-      color: #182018;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 24px;
-      }
-    }
-  </style>
 </head>
-
 <body>
 
-  <main class="auth-wrapper">
+<div class="auth-page">
+  <aside class="auth-side">
+    <div class="auth-side-content">
+      <a href="index.html"><img class="logo-img" alt="PetLe"></a>
 
-    <div class="brand">
-      <div class="brand-name">PetLe</div>
-      <div class="brand-tagline">A social world for pets & their people</div>
+      <h1>Better lives.<br>Together.</h1>
+      <p>
+        A thoughtful social space for pets and the people who care about them.
+        Share moments, build pet profiles and become part of the PetLe community.
+      </p>
+
+      <div class="auth-points">
+        <div class="auth-point"><strong>🐾 Pet focused</strong><span>Built around pets, not noise.</span></div>
+        <div class="auth-point"><strong>♡ Community</strong><span>Connect with fellow pet lovers.</span></div>
+        <div class="auth-point"><strong>⌂ Rehoming</strong><span>Discover pets looking for homes.</span></div>
+        <div class="auth-point"><strong>✦ Simple</strong><span>Clean, calm and easy to use.</span></div>
+      </div>
     </div>
+  </aside>
 
-    <section class="card">
+  <main class="auth-main">
+    <section class="auth-card">
+      <div class="auth-brand">
+        <img class="logo-img" alt="PetLe">
+        <p>A social world for pets & their people</p>
+      </div>
 
       <div class="tabs">
         <button class="tab active" id="loginTab">Log in</button>
         <button class="tab" id="signupTab">Create account</button>
       </div>
 
-      <!-- LOGIN -->
       <div id="loginForm">
-        <h1>Welcome back</h1>
-        <p class="subtitle">
-          Log in to continue your PetLe journey.
-        </p>
+        <h2>Welcome back</h2>
+        <p class="auth-sub">Log in to continue your PetLe journey.</p>
 
         <div class="field">
-          <label for="loginEmail">Email</label>
-          <input
-            type="email"
-            id="loginEmail"
-            placeholder="you@example.com"
-            autocomplete="email"
-          >
+          <label for="loginEmail">Email address</label>
+          <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email">
         </div>
 
         <div class="field">
           <label for="loginPassword">Password</label>
-          <input
-            type="password"
-            id="loginPassword"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-          >
+          <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
         </div>
 
-        <button class="primary-btn" id="loginButton">
-          Log in
-        </button>
+        <button class="auth-submit" id="loginButton">Log in →</button>
       </div>
 
-      <!-- SIGN UP -->
       <div id="signupForm" class="hidden">
-        <h1>Create your PetLe account</h1>
-        <p class="subtitle">
-          Join PetLe and create your own pet-focused social profile.
-        </p>
+        <h2>Create your PetLe account</h2>
+        <p class="auth-sub">Join the community and start creating your pet world.</p>
 
         <div class="field">
-          <label for="signupEmail">Email</label>
-          <input
-            type="email"
-            id="signupEmail"
-            placeholder="you@example.com"
-            autocomplete="email"
-          >
+          <label for="signupEmail">Email address</label>
+          <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email">
         </div>
 
         <div class="field">
           <label for="signupPassword">Password</label>
-          <input
-            type="password"
-            id="signupPassword"
-            placeholder="Create a password"
-            autocomplete="new-password"
-          >
+          <input id="signupPassword" type="password" placeholder="Create a password" autocomplete="new-password">
         </div>
 
-        <button class="primary-btn" id="signupButton">
-          Create account
-        </button>
+        <button class="auth-submit" id="signupButton">Create account →</button>
       </div>
 
       <div id="message" class="message"></div>
-
-      <a href="index.html" class="back">
-        ← Back to PetLe
-      </a>
-
+      <a class="back-link" href="index.html">← Back to PetLe</a>
     </section>
-
   </main>
+</div>
 
-  <script>
+<script>
+  const SUPABASE_URL = "https://ocpcakexrzyjcojksvjz.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kc40fhxk3ZOlSyYDIApJmA_NOSieH7h";
+  const { createClient } = supabase;
+  const petleSupabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-    // ==============================
-    // PetLe Supabase Configuration
-    // ==============================
+  const loginTab = document.getElementById("loginTab");
+  const signupTab = document.getElementById("signupTab");
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+  const message = document.getElementById("message");
 
-    const SUPABASE_URL = "https://ocpcakexrzyjcojksvjz.supabase.co";
-    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kc40fhxk3ZOlSyYDIApJmA_NOSieH7h";
+  function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+  }
 
-    const { createClient } = supabase;
+  function showLogin() {
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+    loginForm.classList.remove("hidden");
+    signupForm.classList.add("hidden");
+    message.className = "message";
+  }
 
-    const petleSupabase = createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
+  function showSignup() {
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+    signupForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
+    message.className = "message";
+  }
 
+  loginTab.addEventListener("click", showLogin);
+  signupTab.addEventListener("click", showSignup);
 
-    // ==============================
-    // UI
-    // ==============================
+  if (window.location.hash === "#signup") showSignup();
 
-    const loginTab = document.getElementById("loginTab");
-    const signupTab = document.getElementById("signupTab");
+  document.getElementById("signupButton").addEventListener("click", async () => {
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
 
-    const loginForm = document.getElementById("loginForm");
-    const signupForm = document.getElementById("signupForm");
-
-    const message = document.getElementById("message");
-
-
-    function showMessage(text, type) {
-      message.textContent = text;
-      message.className = "message " + type;
+    if (!email || !password) {
+      showMessage("Please enter your email and password.", "error");
+      return;
     }
 
+    if (password.length < 6) {
+      showMessage("Password must be at least 6 characters.", "error");
+      return;
+    }
 
-    loginTab.addEventListener("click", () => {
-      loginTab.classList.add("active");
-      signupTab.classList.remove("active");
+    const { error } = await petleSupabase.auth.signUp({ email, password });
 
-      loginForm.classList.remove("hidden");
-      signupForm.classList.add("hidden");
+    if (error) {
+      showMessage(error.message, "error");
+      return;
+    }
 
-      message.className = "message";
-    });
+    showMessage(
+      "Account created. Please check your email and confirm your PetLe account before logging in.",
+      "success"
+    );
+  });
 
+  document.getElementById("loginButton").addEventListener("click", async () => {
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
 
-    signupTab.addEventListener("click", () => {
-      signupTab.classList.add("active");
-      loginTab.classList.remove("active");
+    if (!email || !password) {
+      showMessage("Please enter your email and password.", "error");
+      return;
+    }
 
-      signupForm.classList.remove("hidden");
-      loginForm.classList.add("hidden");
+    const { error } = await petleSupabase.auth.signInWithPassword({ email, password });
 
-      message.className = "message";
-    });
+    if (error) {
+      showMessage(error.message, "error");
+      return;
+    }
 
-
-    // ==============================
-    // SIGN UP
-    // ==============================
-
-    document.getElementById("signupButton").addEventListener("click", async () => {
-
-      const email = document.getElementById("signupEmail").value.trim();
-      const password = document.getElementById("signupPassword").value;
-
-      if (!email || !password) {
-        showMessage("Please enter your email and password.", "error");
-        return;
-      }
-
-      if (password.length < 6) {
-        showMessage("Password must be at least 6 characters.", "error");
-        return;
-      }
-
-      const { error } = await petleSupabase.auth.signUp({
-        email: email,
-        password: password
-      });
-
-      if (error) {
-        showMessage(error.message, "error");
-        return;
-      }
-
-      showMessage(
-        "Account created! Please check your email and verify your account before logging in.",
-        "success"
-      );
-    });
-
-
-    // ==============================
-    // LOGIN
-    // ==============================
-
-    document.getElementById("loginButton").addEventListener("click", async () => {
-
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value;
-
-      if (!email || !password) {
-        showMessage("Please enter your email and password.", "error");
-        return;
-      }
-
-      const { data, error } = await petleSupabase.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-      if (error) {
-        showMessage(error.message, "error");
-        return;
-      }
-
-      showMessage("Login successful! Welcome to PetLe.", "success");
-
-      console.log("PetLe user logged in:", data.user.id);
-    });
-
-  </script>
-
+    window.location.href = "index.html";
+  });
+</script>
 </body>
 </html>
