@@ -3,167 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PetLe — Log in or create an account</title>
+  <title>PetLe — A social world for pets & their people</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-<div class="auth-page">
-  <aside class="auth-side">
-    <div class="auth-side-content">
-      <a href="index.html"><img class="logo-img" alt="PetLe"></a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" aria-label="PetLe home">
+      <img class="logo-img" alt="PetLe">
+    </a>
 
-      <h1>Better lives.<br>Together.</h1>
-      <p>
-        A thoughtful social space for pets and the people who care about them.
-        Share moments, build pet profiles and become part of the PetLe community.
-      </p>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#community">Community</a>
+      <a href="#rehoming">Rehoming</a>
+      <a href="#about">About</a>
+    </nav>
 
-      <div class="auth-points">
-        <div class="auth-point"><strong>🐾 Pet focused</strong><span>Built around pets, not noise.</span></div>
-        <div class="auth-point"><strong>♡ Community</strong><span>Connect with fellow pet lovers.</span></div>
-        <div class="auth-point"><strong>⌂ Rehoming</strong><span>Discover pets looking for homes.</span></div>
-        <div class="auth-point"><strong>✦ Simple</strong><span>Clean, calm and easy to use.</span></div>
+    <div class="header-actions">
+      <div id="accountBar" class="account-bar">● Signed in</div>
+      <a id="loginLink" class="btn btn-ghost" href="auth.html">Log in</a>
+      <a id="joinLink" class="btn btn-primary" href="auth.html#signup">Join PetLe</a>
+      <button id="logoutButton" class="btn btn-ghost hidden">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">🐾 Better lives. Together.</div>
+        <h1>A social world for <span>pets & their people.</span></h1>
+        <p>
+          Share moments, discover a caring community, create pet profiles,
+          and find pets looking for a new home — all in one thoughtful place.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="auth.html#signup">Create your account →</a>
+          <a class="btn btn-ghost" href="#community">Explore PetLe</a>
+        </div>
+
+        <div class="trust-row">
+          <span>✓ Pet-focused</span>
+          <span>✓ Built for community</span>
+          <span>✓ Privacy-minded</span>
+        </div>
+      </div>
+
+      <div class="visual" aria-label="PetLe pet community preview">
+        <div class="float-card one">
+          <div class="float-title">A place for every pet</div>
+          <div class="float-sub">Profiles · moments · community</div>
+        </div>
+        <div class="heart">♥</div>
+        <div class="pet-scene">
+          <div class="pet-emoji">🐕</div>
+          <div class="pet-emoji cat">🐈</div>
+        </div>
+        <div class="visual-shape"></div>
+        <div class="float-card two">
+          <div class="float-title">Find. Connect. Care.</div>
+          <div class="float-sub">The PetLe way</div>
+        </div>
       </div>
     </div>
-  </aside>
+  </section>
 
-  <main class="auth-main">
-    <section class="auth-card">
-      <div class="auth-brand">
-        <img class="logo-img" alt="PetLe">
-        <p>A social world for pets & their people</p>
+  <section class="section" id="community">
+    <div class="container">
+      <div class="section-head">
+        <h2>Made around the way people love their pets.</h2>
+        <p>PetLe brings the social side, pet profiles and rehoming journey together in one calm, simple experience.</p>
       </div>
 
-      <div class="tabs">
-        <button class="tab active" id="loginTab">Log in</button>
-        <button class="tab" id="signupTab">Create account</button>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">♡</div>
+          <h3>Pet Social</h3>
+          <p>Share photos and videos, follow people and pets, and discover moments from a community built around animals.</p>
+        </article>
+
+        <article class="card" id="rehoming">
+          <div class="card-icon">⌂</div>
+          <h3>Thoughtful Rehoming</h3>
+          <p>Browse pets looking for a new home or create a listing with clear details, photos and location.</p>
+        </article>
+
+        <article class="card" id="about">
+          <div class="card-icon">✦</div>
+          <h3>Real Connections</h3>
+          <p>Message other members inside PetLe and keep conversations connected to the pets and profiles that matter.</p>
+        </article>
       </div>
+    </div>
+  </section>
+</main>
 
-      <div id="loginForm">
-        <h2>Welcome back</h2>
-        <p class="auth-sub">Log in to continue your PetLe journey.</p>
+<footer class="footer">
+  <div class="container footer-inner">
+    <img class="logo-img" alt="PetLe">
+    <span>© 2026 PetLe · Better lives. Together.</span>
+  </div>
+</footer>
 
-        <div class="field">
-          <label for="loginEmail">Email address</label>
-          <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email">
-        </div>
-
-        <div class="field">
-          <label for="loginPassword">Password</label>
-          <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
-        </div>
-
-        <button class="auth-submit" id="loginButton">Log in →</button>
-      </div>
-
-      <div id="signupForm" class="hidden">
-        <h2>Create your PetLe account</h2>
-        <p class="auth-sub">Join the community and start creating your pet world.</p>
-
-        <div class="field">
-          <label for="signupEmail">Email address</label>
-          <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email">
-        </div>
-
-        <div class="field">
-          <label for="signupPassword">Password</label>
-          <input id="signupPassword" type="password" placeholder="Create a password" autocomplete="new-password">
-        </div>
-
-        <button class="auth-submit" id="signupButton">Create account →</button>
-      </div>
-
-      <div id="message" class="message"></div>
-      <a class="back-link" href="index.html">← Back to PetLe</a>
-    </section>
-  </main>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const SUPABASE_URL = "https://ocpcakexrzyjcojksvjz.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kc40fhxk3ZOlSyYDIApJmA_NOSieH7h";
   const { createClient } = supabase;
   const petleSupabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-  const loginTab = document.getElementById("loginTab");
-  const signupTab = document.getElementById("signupTab");
-  const loginForm = document.getElementById("loginForm");
-  const signupForm = document.getElementById("signupForm");
-  const message = document.getElementById("message");
+  async function updateSessionUI() {
+    const { data } = await petleSupabase.auth.getSession();
+    const signedIn = !!data.session;
 
-  function showMessage(text, type) {
-    message.textContent = text;
-    message.className = "message " + type;
+    document.getElementById("loginLink").classList.toggle("hidden", signedIn);
+    document.getElementById("joinLink").classList.toggle("hidden", signedIn);
+    document.getElementById("logoutButton").classList.toggle("hidden", !signedIn);
+    document.getElementById("accountBar").style.display = signedIn ? "flex" : "none";
   }
 
-  function showLogin() {
-    loginTab.classList.add("active");
-    signupTab.classList.remove("active");
-    loginForm.classList.remove("hidden");
-    signupForm.classList.add("hidden");
-    message.className = "message";
-  }
-
-  function showSignup() {
-    signupTab.classList.add("active");
-    loginTab.classList.remove("active");
-    signupForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-    message.className = "message";
-  }
-
-  loginTab.addEventListener("click", showLogin);
-  signupTab.addEventListener("click", showSignup);
-
-  if (window.location.hash === "#signup") showSignup();
-
-  document.getElementById("signupButton").addEventListener("click", async () => {
-    const email = document.getElementById("signupEmail").value.trim();
-    const password = document.getElementById("signupPassword").value;
-
-    if (!email || !password) {
-      showMessage("Please enter your email and password.", "error");
-      return;
-    }
-
-    if (password.length < 6) {
-      showMessage("Password must be at least 6 characters.", "error");
-      return;
-    }
-
-    const { error } = await petleSupabase.auth.signUp({ email, password });
-
-    if (error) {
-      showMessage(error.message, "error");
-      return;
-    }
-
-    showMessage(
-      "Account created. Please check your email and confirm your PetLe account before logging in.",
-      "success"
-    );
+  document.getElementById("logoutButton").addEventListener("click", async () => {
+    await petleSupabase.auth.signOut();
+    await updateSessionUI();
   });
 
-  document.getElementById("loginButton").addEventListener("click", async () => {
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
-
-    if (!email || !password) {
-      showMessage("Please enter your email and password.", "error");
-      return;
-    }
-
-    const { error } = await petleSupabase.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      showMessage(error.message, "error");
-      return;
-    }
-
-    window.location.href = "index.html";
-  });
+  petleSupabase.auth.onAuthStateChange(() => updateSessionUI());
+  updateSessionUI();
 </script>
 </body>
 </html>
